@@ -1,15 +1,14 @@
 package src;
 
-import src.fill_array.FillArrayByExecutorService;
-import src.fill_array.FillArrayByMultiThread;
+import src.fill_map.FillMapByMultiThread;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
 
-    FillArrayByMultiThread fillArrayByMultiThread = new FillArrayByMultiThread();
-    fillArrayByMultiThread.run();
+    /*FillArrayByMultiThread fillArrayByMultiThread = new FillArrayByMultiThread();
+    fillArrayByMultiThread.run();*/
 
-    /*FillArrayByExecutorService fillArrayByExecutorService = new FillArrayByExecutorService();
-    fillArrayByExecutorService.run();*/
+    FillMapByMultiThread fillMapByMultiThread = new FillMapByMultiThread();
+    fillMapByMultiThread.run();
   }//main
 }//main class
