@@ -25,26 +25,18 @@ public class FillMapByExecutorService {
     System.out.println("1개 스레드 실행시간 : " + (end-start));
 
     ExecutorService executor = Executors.newFixedThreadPool(10);
-    List<TaskImpl> callableTasks = new ArrayList<>();
 
     System.out.println("멀티스레딩 작업 시작 시각 : " + LocalDateTime.now());
     for(int i=0; i<10_000_000; i+=1_000_000){
-      callableTasks.add(
+      executor.execute(
           new TaskImpl(i, i + 999_999, concurrentHashMap)
       );
     }
 
-    try {
-      executor.invokeAll(callableTasks);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    } finally {
-      executor.shutdown();
-    }
-
+    executor.shutdown();
   }//run()
 
-  private class TaskImpl implements Callable<Void> {
+  private static class TaskImpl implements Runnable {
     private final int startIdx;
     private final int endIdx;
     private final ConcurrentHashMap<Integer, Integer> concurrentHashMap;
@@ -58,14 +50,13 @@ public class FillMapByExecutorService {
     }
 
     @Override
-    public Void call() throws Exception {
+    public void run() {
       for(int i=startIdx; i<=endIdx; i++){
         concurrentHashMap.put(i,i);
       }
       if(concurrentHashMap.size() == 10_000_000){
         System.out.println("멀티스레딩 작업 완료 시각 : " + LocalDateTime.now());
       }
-      return null;
     }
   }
 
