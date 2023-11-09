@@ -1,7 +1,6 @@
 package src;
 
-import src.fill_map.FillMapByExecutorService;
-import src.fill_map.FillMapByMultiThread;
+import src.visibility.VisibilityTest;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -12,7 +11,10 @@ public class Main {
     /*FillMapByMultiThread fillMapByMultiThread = new FillMapByMultiThread();
     fillMapByMultiThread.run();*/
 
-    FillMapByExecutorService fillMapByExecutorService = new FillMapByExecutorService();
-    fillMapByExecutorService.run();
+    /*FillMapByExecutorService fillMapByExecutorService = new FillMapByExecutorService();
+    fillMapByExecutorService.run();*/
+
+    VisibilityTest visibilityTest = new VisibilityTest();
+    visibilityTest.run();
   }//main
 }//main class
