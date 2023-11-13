@@ -1,6 +1,6 @@
 package src;
 
-import src.monitor_patterns.CompareMonitorLockAndThreadSafeObject;
+import src.latch_example.TestHarness;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -17,7 +17,16 @@ public class Main {
     /*VisibilityTest visibilityTest = new VisibilityTest();
     visibilityTest.run();*/
 
-    CompareMonitorLockAndThreadSafeObject compareMonitorLockAndThreadSafeObject = new CompareMonitorLockAndThreadSafeObject();
-    compareMonitorLockAndThreadSafeObject.run();
+    /*CompareMonitorLockAndThreadSafeObject compareMonitorLockAndThreadSafeObject = new CompareMonitorLockAndThreadSafeObject();
+    compareMonitorLockAndThreadSafeObject.run();*/
+    TestHarness testHarnessInstance = new TestHarness();
+    System.out.println(
+            testHarnessInstance.timeTasks(10, new Runnable() {
+              @Override
+              public void run() {
+                System.out.println("작업 시작!!");
+              }
+            })
+    );
   }//main
 }//main class
