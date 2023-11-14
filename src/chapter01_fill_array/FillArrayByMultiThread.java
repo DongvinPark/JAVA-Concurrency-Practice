@@ -1,6 +1,5 @@
-package src.fill_array;
+package src.chapter01_fill_array;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.CountDownLatch;
 
 public class FillArrayByMultiThread {

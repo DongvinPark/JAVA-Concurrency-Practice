@@ -1,8 +1,8 @@
-package src.latch_example;
+package src.chapter05_latch_example;
 
 import java.util.concurrent.CountDownLatch;
 
-public class CountDownLatchUsingAsGateExample {
+public class GateExampleUsingCountDownLatch {
     public long timeTasks (int numberOfThreadsToMake, final Runnable inputTask) throws InterruptedException {
 
         // 스레드 여러 개를 순차적으로 만들어나갈 때, 1번 스레드 만들기 & 실행 >> 2번 스레드 만들기 & 실행 >> ...

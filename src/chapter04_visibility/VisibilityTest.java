@@ -1,4 +1,4 @@
-package src.visibility;
+package src.chapter04_visibility;
 
 public class VisibilityTest {
     private static volatile boolean ready;

@@ -1,4 +1,4 @@
-package src.monitor_patterns;
+package src.chapter03_monitor_patterns;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;

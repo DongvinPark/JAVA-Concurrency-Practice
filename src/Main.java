@@ -1,6 +1,6 @@
 package src;
 
-import src.latch_example.CountDownLatchUsingAsGateExample;
+import src.chapter05_latch_example.GateExampleUsingCountDownLatch;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -20,15 +20,15 @@ public class Main {
     /*SynchronizedQueueUsingMonitorLock synchronizedQueueUsingMonitorLock = new SynchronizedQueueUsingMonitorLock();
     synchronizedQueueUsingMonitorLock.run();*/
 
-    CountDownLatchUsingAsGateExample countDownLatchUsingAsGateExampleInstance = new CountDownLatchUsingAsGateExample();
+    GateExampleUsingCountDownLatch gateExampleUsingCountDownLatchInstance = new GateExampleUsingCountDownLatch();
     System.out.println(
-            countDownLatchUsingAsGateExampleInstance.timeTasks(10, new Runnable() {
+            gateExampleUsingCountDownLatchInstance.timeTasks(10, new Runnable() {
               @Override
               public void run() {
-                System.out.println("작업 시작!!");
+                System.out.println("Task Started!!");
               }
             })
-        + " 나노초 걸림."
+        + " nano second passed"
     );
   }//main
 }//main class

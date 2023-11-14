@@ -1,6 +1,5 @@
-package src.fill_map;
+package src.chapter02_fill_map;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
