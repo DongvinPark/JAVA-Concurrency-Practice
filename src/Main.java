@@ -1,6 +1,6 @@
 package src;
 
-import src.chapter05_latch_example.GateExampleUsingCountDownLatch;
+import src.chapter06_future_example.CheckTaskUsingFuture;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -20,7 +20,7 @@ public class Main {
     /*SynchronizedQueueUsingMonitorLock synchronizedQueueUsingMonitorLock = new SynchronizedQueueUsingMonitorLock();
     synchronizedQueueUsingMonitorLock.run();*/
 
-    GateExampleUsingCountDownLatch gateExampleUsingCountDownLatchInstance = new GateExampleUsingCountDownLatch();
+    /*GateExampleUsingCountDownLatch gateExampleUsingCountDownLatchInstance = new GateExampleUsingCountDownLatch();
     System.out.println(
             gateExampleUsingCountDownLatchInstance.timeTasks(10, new Runnable() {
               @Override
@@ -29,6 +29,9 @@ public class Main {
               }
             })
         + " nano second passed"
-    );
+    );*/
+
+      CheckTaskUsingFuture checkTaskUsingFuture = new CheckTaskUsingFuture();
+      checkTaskUsingFuture.run();
   }//main
 }//main class
