@@ -1,26 +1,32 @@
 package src;
 
-import src.chapter06_future_example.CheckTaskUsingFuture;
+import src.chapter07_fork_join_example.SquareCalculatorUsingRecursiveTask;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
 
-    /*FillArrayByMultiThread fillArrayByMultiThread = new FillArrayByMultiThread();
+    /*FillArrayByMultiThread fillArrayByMultiThread
+     = new FillArrayByMultiThread();
     fillArrayByMultiThread.run();*/
 
-    /*FillMapByMultiThread fillMapByMultiThread = new FillMapByMultiThread();
+    /*FillMapByMultiThread fillMapByMultiThread
+     = new FillMapByMultiThread();
     fillMapByMultiThread.run();*/
 
-    /*FillMapByExecutorService fillMapByExecutorService = new FillMapByExecutorService();
+    /*FillMapByExecutorService fillMapByExecutorService
+     = new FillMapByExecutorService();
     fillMapByExecutorService.run();*/
 
-    /*VisibilityTest visibilityTest = new VisibilityTest();
+    /*VisibilityTest visibilityTest
+     = new VisibilityTest();
     visibilityTest.run();*/
 
-    /*SynchronizedQueueUsingMonitorLock synchronizedQueueUsingMonitorLock = new SynchronizedQueueUsingMonitorLock();
+    /*SynchronizedQueueUsingMonitorLock synchronizedQueueUsingMonitorLock
+     = new SynchronizedQueueUsingMonitorLock();
     synchronizedQueueUsingMonitorLock.run();*/
 
-    /*GateExampleUsingCountDownLatch gateExampleUsingCountDownLatchInstance = new GateExampleUsingCountDownLatch();
+    /*GateExampleUsingCountDownLatch gateExampleUsingCountDownLatchInstance
+     = new GateExampleUsingCountDownLatch();
     System.out.println(
             gateExampleUsingCountDownLatchInstance.timeTasks(10, new Runnable() {
               @Override
@@ -31,7 +37,12 @@ public class Main {
         + " nano second passed"
     );*/
 
-      CheckTaskUsingFuture checkTaskUsingFuture = new CheckTaskUsingFuture();
-      checkTaskUsingFuture.run();
+    /*CheckTaskUsingFuture checkTaskUsingFuture
+     = new CheckTaskUsingFuture();
+      checkTaskUsingFuture.run();*/
+
+    SquareCalculatorUsingRecursiveTask squareCalculatorUsingRecursiveTask
+        = new SquareCalculatorUsingRecursiveTask();
+    squareCalculatorUsingRecursiveTask.run();
   }//main
 }//main class

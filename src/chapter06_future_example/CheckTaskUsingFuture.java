@@ -27,7 +27,7 @@ public class CheckTaskUsingFuture {
                     // 이번 예시에서는 Future 객체가 아직 완료되지 않았음을 보여주기 위해서 이렇게 코딩했지만,
                     // 실전에서는 이러한 busy-waiting 상태를 방치해서는 안 된다.
                     Thread.sleep(1000);
-                    System.out.println("Future task thread still in processing ...");
+                    System.out.println("Future task thread still in processing ... / status : " + stringFuture.isDone());
                 }
             }
         } catch (InterruptedException | ExecutionException e) {
