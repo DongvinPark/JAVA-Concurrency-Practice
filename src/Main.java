@@ -1,6 +1,6 @@
 package src;
 
-import src.chapter08_threadlocal_example.ThreadLocalTest;
+import src.chapter06_future_example.CheckTaskUsingCompletableFuture;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -45,8 +45,12 @@ public class Main {
         = new SquareCalculatorUsingRecursiveTask();
     squareCalculatorUsingRecursiveTask.run();*/
 
-    ThreadLocalTest threadLocalTest
+    /*ThreadLocalTest threadLocalTest
             = new ThreadLocalTest();
-    threadLocalTest.run();
+    threadLocalTest.run();*/
+
+    CheckTaskUsingCompletableFuture checkTaskUsingCompletableFuture
+            = new CheckTaskUsingCompletableFuture();
+    checkTaskUsingCompletableFuture.run();
   }//main
 }//main class
