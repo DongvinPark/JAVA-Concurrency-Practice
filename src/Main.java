@@ -1,6 +1,6 @@
 package src;
 
-import src.chapter07_fork_join_example.SquareCalculatorUsingRecursiveTask;
+import src.chapter08_threadlocal_example.ThreadLocalTest;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -41,8 +41,12 @@ public class Main {
      = new CheckTaskUsingFuture();
       checkTaskUsingFuture.run();*/
 
-    SquareCalculatorUsingRecursiveTask squareCalculatorUsingRecursiveTask
+    /*SquareCalculatorUsingRecursiveTask squareCalculatorUsingRecursiveTask
         = new SquareCalculatorUsingRecursiveTask();
-    squareCalculatorUsingRecursiveTask.run();
+    squareCalculatorUsingRecursiveTask.run();*/
+
+    ThreadLocalTest threadLocalTest
+            = new ThreadLocalTest();
+    threadLocalTest.run();
   }//main
 }//main class
