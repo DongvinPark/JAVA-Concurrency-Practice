@@ -7,6 +7,12 @@ public class CheckTaskUsingCompletableFuture {
 
     public void run(){
 
+        /*
+        Future는 해당 태스크를 실행해줄 스레드풀을 따로 만들어준 후,
+        거기에 Future 태스크를 별도로 submit해줘야 했지만,
+        CompletableFuture는 내부적으로 별도의 ForkJoinPool을 활용하기 때문에 이러한 작업이 필요 없으며,
+        Future 를 실행시킨 스레드풀을 따로 종료시켜줄 필요도 없기 때문에 더 편리하게 사용할 수 있다.
+        * */
         CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(
                 () -> {
                     try {
