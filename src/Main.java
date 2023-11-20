@@ -1,5 +1,7 @@
 package src;
 
+import java.util.concurrent.ConcurrentHashMap;
+import src.chapter09_integer_cash_example.CashUsingConcurrentHashMap;
 import src.chapter09_integer_cash_example.CashUsingSynchronizedKeyword;
 
 import java.util.HashMap;
@@ -58,5 +60,9 @@ public class Main {
     CashUsingSynchronizedKeyword cashUsingSynchronizedKeyword
             = new CashUsingSynchronizedKeyword(new HashMap<Integer, Integer>());
     cashUsingSynchronizedKeyword.run();
+
+    CashUsingConcurrentHashMap cashUsingConcurrentHashMap
+        = new CashUsingConcurrentHashMap(new ConcurrentHashMap<Integer, Integer>());
+    cashUsingConcurrentHashMap.run();
   }//main
 }//main class
