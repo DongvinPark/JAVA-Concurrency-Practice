@@ -1,6 +1,8 @@
 package src;
 
-import src.chapter06_future_example.CheckTaskUsingCompletableFuture;
+import src.chapter09_integer_cash_example.CashUsingSynchronizedKeyword;
+
+import java.util.HashMap;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -49,8 +51,12 @@ public class Main {
             = new ThreadLocalTest();
     threadLocalTest.run();*/
 
-    CheckTaskUsingCompletableFuture checkTaskUsingCompletableFuture
+    /*CheckTaskUsingCompletableFuture checkTaskUsingCompletableFuture
             = new CheckTaskUsingCompletableFuture();
-    checkTaskUsingCompletableFuture.run();
+    checkTaskUsingCompletableFuture.run();*/
+
+    CashUsingSynchronizedKeyword cashUsingSynchronizedKeyword
+            = new CashUsingSynchronizedKeyword(new HashMap<Integer, Integer>());
+    cashUsingSynchronizedKeyword.run();
   }//main
 }//main class

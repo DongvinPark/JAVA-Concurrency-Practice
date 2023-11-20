@@ -1,6 +1,9 @@
 package src.chapter09_integer_cash_example;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 // 맵 자료구조에 10개의 스레드가 1~100 까지의 숫자의 제곱 값을 랜덤순서로 동시에 요청한다.
@@ -24,6 +27,23 @@ public class CashUsingSynchronizedKeyword {
         CountDownLatch startGate = new CountDownLatch(1);
         CountDownLatch endGate = new CountDownLatch(NUMBER_OF_THREADS);
 
+        for(int i=1; i<= NUMBER_OF_THREADS; i++){
+            Thread t = new Thread(
+                    new TaskImpl(getNewRandumOrderList(), startGate, endGate)
+            );
+            t.start();
+        }
+
+        try {
+            long start = System.nanoTime();
+            startGate.countDown();
+            endGate.await();
+            long end = System.nanoTime();
+
+            System.out.println("Elapsed time in nano seconds : " + (end-start));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }//run
 
     private static List<Integer> getNewRandumOrderList(){
@@ -34,11 +54,13 @@ public class CashUsingSynchronizedKeyword {
     }
 
     private synchronized Integer compute(int requestNumber){
+        Integer computeResult;
         if(!cashMap.containsKey(requestNumber)){
-            return cashMap.put(requestNumber ,requestNumber*requestNumber);
-        } else {
-            return cashMap.get(requestNumber);
+            cashMap.put(requestNumber ,requestNumber*requestNumber);
         }
+        computeResult = cashMap.get(requestNumber);
+        if(computeResult == null) return 0;
+        else return computeResult;
     }
 
     private final class TaskImpl implements Runnable {
@@ -70,11 +92,8 @@ public class CashUsingSynchronizedKeyword {
                 throw new RuntimeException(e);
             } finally {
                 endGate.countDown();
+                System.out.println("Thread " + Thread.currentThread().getId() + " answer : " + result);
             }
-        }
-
-        public int getResult(){
-            return result;
         }
     }// TaskImpl
 
