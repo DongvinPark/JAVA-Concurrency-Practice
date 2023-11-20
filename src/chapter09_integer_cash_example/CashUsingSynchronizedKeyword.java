@@ -92,7 +92,11 @@ public class CashUsingSynchronizedKeyword {
                 throw new RuntimeException(e);
             } finally {
                 endGate.countDown();
-                System.out.println("Thread " + Thread.currentThread().getId() + " answer : " + result);
+                if(result == ANSWER){
+                    System.out.println("Correct!!");
+                } else {
+                    System.out.println("Wrong...");
+                }
             }
         }
     }// TaskImpl
