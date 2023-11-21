@@ -21,7 +21,7 @@ FutureTask를 쓸 경우, 두 개의 스레드가 거의 동시에 같은 키 �
 연산을 실행하는 데 시간이 오래 걸리지 않는다면, 앞의 두 경우보다 FutureTask를 쓴 쪽이 오히려 시간이 synchronized를 쓴 경우보다
 약 5~10% 느린 것으로 측정되지만,
 멀티 스레드 환경에서 여러 스레드들에 의해서 호출되는 연산이 실행하는 것에 아주 약간이라도 시간이 더 걸리면 FutureTask를 쓰는 것이
-성능을 획기적으로 향상된다.
+성능을 획기적으로 향상시키는 것으로 측정되었다.
 * */
 public class CashVersion03UsingFutureObject {
     private static final int ANSWER = 338_350;// 1^2 + 2^2 + ... + 100^2
