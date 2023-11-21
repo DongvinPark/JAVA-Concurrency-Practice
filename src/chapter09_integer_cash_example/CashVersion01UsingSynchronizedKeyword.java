@@ -17,14 +17,14 @@ import java.util.concurrent.CountDownLatch;
 // 스레드 개수가 1천 개로 늘어나자, 전자는 3200만 나노초, 후자는 2200만 나노초로, 거의 30% 정도 더 빠른 성능을 보여줬다.
 // 스레드 개수가 많아질수록, 그리고 1개 스레드가 작업을 처리하는 시간이 길어질수록, 단순 synchronized를 이용한
 // 동기화는 성능 측면에서 부정적인 결과를 보여주었다.
-public class CashUsingSynchronizedKeyword {
+public class CashVersion01UsingSynchronizedKeyword {
 
     private static final int ANSWER = 338_350;// 1^2 + 2^2 + ... + 100^2
-    private static final int NUMBER_OF_THREADS = 1000;
+    private static final int NUMBER_OF_THREADS = 10;
 
     private final HashMap<Integer, Integer> cashMap;
 
-    public CashUsingSynchronizedKeyword(HashMap<Integer, Integer> cashMap) {
+    public CashVersion01UsingSynchronizedKeyword(HashMap<Integer, Integer> cashMap) {
         this.cashMap = cashMap;
     }
 
@@ -65,6 +65,8 @@ public class CashUsingSynchronizedKeyword {
             cashMap.put(requestNumber ,requestNumber*requestNumber);
         }
         computeResult = cashMap.get(requestNumber);
+        int max = Integer.MAX_VALUE;
+        while(max != 0){max--;}
         if(computeResult == null) return 0;
         else return computeResult;
     }

@@ -1,10 +1,12 @@
 package src;
 
-import java.util.concurrent.ConcurrentHashMap;
-import src.chapter09_integer_cash_example.CashUsingConcurrentHashMap;
-import src.chapter09_integer_cash_example.CashUsingSynchronizedKeyword;
+import src.chapter09_integer_cash_example.CashVersion02UsingConcurrentHashMap;
+import src.chapter09_integer_cash_example.CashVersion03UsingFutureObject;
+import src.chapter09_integer_cash_example.CashVersion01UsingSynchronizedKeyword;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.FutureTask;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -57,12 +59,16 @@ public class Main {
             = new CheckTaskUsingCompletableFuture();
     checkTaskUsingCompletableFuture.run();*/
 
-    CashUsingSynchronizedKeyword cashUsingSynchronizedKeyword
-            = new CashUsingSynchronizedKeyword(new HashMap<Integer, Integer>());
-    cashUsingSynchronizedKeyword.run();
+    CashVersion01UsingSynchronizedKeyword cashVersion01UsingSynchronizedKeyword
+            = new CashVersion01UsingSynchronizedKeyword(new HashMap<Integer, Integer>());
+    cashVersion01UsingSynchronizedKeyword.run();
 
-    CashUsingConcurrentHashMap cashUsingConcurrentHashMap
-        = new CashUsingConcurrentHashMap(new ConcurrentHashMap<Integer, Integer>());
-    cashUsingConcurrentHashMap.run();
+    CashVersion02UsingConcurrentHashMap cashVersion02UsingConcurrentHashMap
+        = new CashVersion02UsingConcurrentHashMap(new ConcurrentHashMap<Integer, Integer>());
+    cashVersion02UsingConcurrentHashMap.run();
+
+    CashVersion03UsingFutureObject cashVersion03UsingFutureObject
+            = new CashVersion03UsingFutureObject(new ConcurrentHashMap<Integer, FutureTask<Integer>>());
+    cashVersion03UsingFutureObject.run();
   }//main
 }//main class
