@@ -7,6 +7,7 @@ import src.chapter09_integer_cash_example.CashVersion01UsingSynchronizedKeyword;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.FutureTask;
+import src.chapter10_callable_example.ReturnOrThrowThatIsTheProblem;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -59,7 +60,7 @@ public class Main {
             = new CheckTaskUsingCompletableFuture();
     checkTaskUsingCompletableFuture.run();*/
 
-    CashVersion01UsingSynchronizedKeyword cashVersion01UsingSynchronizedKeyword
+    /*CashVersion01UsingSynchronizedKeyword cashVersion01UsingSynchronizedKeyword
             = new CashVersion01UsingSynchronizedKeyword(new HashMap<Integer, Integer>());
     cashVersion01UsingSynchronizedKeyword.run();
 
@@ -69,6 +70,10 @@ public class Main {
 
     CashVersion03UsingFutureObject cashVersion03UsingFutureObject
             = new CashVersion03UsingFutureObject(new ConcurrentHashMap<Integer, FutureTask<Integer>>());
-    cashVersion03UsingFutureObject.run();
+    cashVersion03UsingFutureObject.run();*/
+
+    ReturnOrThrowThatIsTheProblem returnOrThrowThatIsTheProblem
+        = new ReturnOrThrowThatIsTheProblem();
+    returnOrThrowThatIsTheProblem.run();
   }//main
 }//main class
