@@ -1,6 +1,6 @@
 package src;
 
-import src.chapter11_blockingqueue_blockingdeque_example.ProducersAndConsumersWithoutBlockingQueue;
+import src.chapter12_task_hijacking_example.TaskHijackingUsingBlockingDeque;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -69,8 +69,12 @@ public class Main {
         = new ReturnOrThrowThatIsTheProblem();
     returnOrThrowThatIsTheProblem.run();*/
 
-    ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
+    /*ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
         = new ProducersAndConsumersWithoutBlockingQueue();
-    producersAndConsumersWithoutBlockingQueue.run();
+    producersAndConsumersWithoutBlockingQueue.run();*/
+
+    TaskHijackingUsingBlockingDeque taskHijackingUsingBlockingDeque
+            = new TaskHijackingUsingBlockingDeque();
+    taskHijackingUsingBlockingDeque.run();
   }//main
 }//main class
