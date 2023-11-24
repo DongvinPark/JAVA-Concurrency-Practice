@@ -1,4 +1,4 @@
-package src.chapter11_blockingqueue_blockingdeque_example;
+package src.chapter11_producer_consumer_example;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;

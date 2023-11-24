@@ -1,5 +1,6 @@
 package src;
 
+import src.chapter11_producer_consumer_example.ProducersAndConsumersWithoutBlockingQueue;
 import src.chapter12_task_hijacking_example.TaskHijackingUsingBlockingDeque;
 
 public class Main {
@@ -69,9 +70,9 @@ public class Main {
         = new ReturnOrThrowThatIsTheProblem();
     returnOrThrowThatIsTheProblem.run();*/
 
-    /*ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
+    ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
         = new ProducersAndConsumersWithoutBlockingQueue();
-    producersAndConsumersWithoutBlockingQueue.run();*/
+    producersAndConsumersWithoutBlockingQueue.run();
 
     TaskHijackingUsingBlockingDeque taskHijackingUsingBlockingDeque
             = new TaskHijackingUsingBlockingDeque();
