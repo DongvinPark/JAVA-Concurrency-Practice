@@ -11,13 +11,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 작업 한 개를 처리하는 것에 걸리는 시간은 1밀리초 ~ 10밀리초 이고, 이는 작업을 처리하기 시작한 시점에
 ThreadLocalRandom 난수에 의해서 결정된다.
-이때 컨슈머스레드의 아이디가 홀수일 경우, 랜덤 난수에 *2를 해서 고의적으로 이쪽의 작업시간을 더 길게 만든다.
 
 컨슈머 스레드들을 자기가 가져온 작업을 처리하기만 할 뿐, 다른 컨슈머 스레드들의 작업 처리에는 관여하지 않는다.
-1 개의 컨슈머 스레드는 최대 1000개 까지의 작업만을 처리할 수 있고, 그 후에는 더 이상 작업을 처리하지 못한다.
-이렇게 설정한 이유는 특정 스레드에 시간이 더 오래 걸리는 작업들이 몰려 있어서 이쪽 스레드들이 병목 현상의 원인이 된 경우를 재현하기 위해서이다.
+
+이러한 구조를 선택했을 경우 구현은 쉽지만, BlockingQueue가 Single Point of Failure 가 되고,
+BlockingQueue가 스레드 세이프하지만 해당 큐로 여러 스레드가 동시에 접근하기 때문에 안정성 측면에서 약점이 존재한다.
 */
-public class ProducersAndConsumersWithoutBlockingDeque {
+public class ProducersAndConsumersWithoutBlockingQueue {
     public void run(){
         BlockingQueue<Task> taskBlockingQueue = new LinkedBlockingQueue<>();
         CountDownLatch startGate = new CountDownLatch(1);
@@ -47,7 +47,7 @@ public class ProducersAndConsumersWithoutBlockingDeque {
             startGate.countDown();
             endGate.await();
             long end = System.currentTimeMillis();
-            System.out.println("블로킹덱 없이 병렬 처리했을 때 걸린 시간 밀리초 : " + (end-start));
+            System.out.println("블록킹큐로 병렬 처리했을 때 걸린 시간 밀리초 : " + (end-start));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -88,7 +88,7 @@ public class ProducersAndConsumersWithoutBlockingDeque {
                 start = System.currentTimeMillis();
                 startGate.await();
                 while(true){
-                    if(!taskBlockingQueue.isEmpty() && taskDoneCnt < 1000){
+                    if(!taskBlockingQueue.isEmpty()){
                         taskBlockingQueue.take().work();
                         taskDoneCnt++;
                     } else break;
@@ -112,9 +112,6 @@ public class ProducersAndConsumersWithoutBlockingDeque {
         public void work(){
             try {
                 int timeToNeed = ThreadLocalRandom.current().nextInt(1,11);
-                if(Thread.currentThread().getId() % 2 == 1){
-                    timeToNeed = timeToNeed*2;
-                }
                 Thread.sleep(timeToNeed);
             } catch (InterruptedException e){
                 throw new RuntimeException(e);

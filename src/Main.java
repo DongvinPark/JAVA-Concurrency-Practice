@@ -1,14 +1,6 @@
 package src;
 
-import src.chapter09_integer_cash_example.CashVersion02UsingConcurrentHashMap;
-import src.chapter09_integer_cash_example.CashVersion03UsingFutureObject;
-import src.chapter09_integer_cash_example.CashVersion01UsingSynchronizedKeyword;
-
-import java.util.HashMap;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.FutureTask;
-import src.chapter10_callable_example.ReturnOrThrowThatIsTheProblem;
-import src.chapter11_blockingqueue_blockingdeque_example.ProducersAndConsumersWithoutBlockingDeque;
+import src.chapter11_blockingqueue_blockingdeque_example.ProducersAndConsumersWithoutBlockingQueue;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -77,8 +69,8 @@ public class Main {
         = new ReturnOrThrowThatIsTheProblem();
     returnOrThrowThatIsTheProblem.run();*/
 
-    ProducersAndConsumersWithoutBlockingDeque producersAndConsumersWithoutBlockingDeque
-        = new ProducersAndConsumersWithoutBlockingDeque();
-    producersAndConsumersWithoutBlockingDeque.run();
+    ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
+        = new ProducersAndConsumersWithoutBlockingQueue();
+    producersAndConsumersWithoutBlockingQueue.run();
   }//main
 }//main class
