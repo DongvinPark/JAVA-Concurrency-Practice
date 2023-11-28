@@ -25,7 +25,7 @@ public class FillBuffersWithCompletionService {
         };
 
         BlockingQueue<String> stringBuffer = new LinkedBlockingQueue<>();
-        BlockingQueue<byte[]> imageDateBuffer = new LinkedBlockingQueue<>();
+        BlockingQueue<byte[]> imageDataBuffer = new LinkedBlockingQueue<>();
 
         ExecutorService executor = Executors.newFixedThreadPool(30);
 
@@ -57,7 +57,7 @@ public class FillBuffersWithCompletionService {
             }
 
             for(int i=1; i<=30; i++){
-                imageDateBuffer.offer(completionService.take().get());
+                imageDataBuffer.offer(completionService.take().get());
             }
             end = System.currentTimeMillis();
         } catch (InterruptedException | ExecutionException e) {

@@ -1,6 +1,7 @@
 package src;
 
 import src.chapter13_text_and_image_buffer_example.FillBuffersWithCompletionService;
+import src.chapter13_text_and_image_buffer_example.FillBuffersWithFuture;
 import src.chapter13_text_and_image_buffer_example.FillBuffersWithSingleThread;
 
 public class Main {
@@ -78,12 +79,16 @@ public class Main {
             = new TaskHijackingUsingBlockingDeque();
     taskHijackingUsingBlockingDeque.run();*/
 
-    FillBuffersWithSingleThread fillBuffersWithSingleThread
+    /*FillBuffersWithSingleThread fillBuffersWithSingleThread
             = new FillBuffersWithSingleThread();
     fillBuffersWithSingleThread.run();
 
     FillBuffersWithCompletionService fillBuffersWithCompletionService
             = new FillBuffersWithCompletionService();
-    fillBuffersWithCompletionService.run();
+    fillBuffersWithCompletionService.run();*/
+
+    FillBuffersWithFuture fillBuffersWithFuture
+        = new FillBuffersWithFuture();
+    fillBuffersWithFuture.run();
   }//main
 }//main class

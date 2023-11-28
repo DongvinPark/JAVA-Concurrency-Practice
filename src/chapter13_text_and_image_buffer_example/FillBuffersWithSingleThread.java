@@ -25,7 +25,7 @@ public class FillBuffersWithSingleThread {
         };
 
         BlockingQueue<String> stringBuffer = new LinkedBlockingQueue<>();
-        BlockingQueue<ImageData> imageDateBuffer = new LinkedBlockingQueue<>();
+        BlockingQueue<ImageData> imageDataBuffer = new LinkedBlockingQueue<>();
 
         long start = System.currentTimeMillis();
         for(String s : textArr){
@@ -33,7 +33,7 @@ public class FillBuffersWithSingleThread {
         }
 
         for(int i=1; i<=30; i++){
-            imageDateBuffer.offer(new ImageData().downLoadImageData());
+            imageDataBuffer.offer(new ImageData().downLoadImageData());
         }
         long end = System.currentTimeMillis();
 
