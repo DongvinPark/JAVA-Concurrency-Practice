@@ -2,6 +2,7 @@ package src;
 
 import src.chapter11_producer_consumer_example.ProducersAndConsumersWithoutBlockingQueue;
 import src.chapter12_task_hijacking_example.TaskHijackingUsingBlockingDeque;
+import src.chapter13_text_and_image_buffer_example.FillBuffersWithSingleThread;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -70,12 +71,16 @@ public class Main {
         = new ReturnOrThrowThatIsTheProblem();
     returnOrThrowThatIsTheProblem.run();*/
 
-    ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
+    /*ProducersAndConsumersWithoutBlockingQueue producersAndConsumersWithoutBlockingQueue
         = new ProducersAndConsumersWithoutBlockingQueue();
     producersAndConsumersWithoutBlockingQueue.run();
 
     TaskHijackingUsingBlockingDeque taskHijackingUsingBlockingDeque
             = new TaskHijackingUsingBlockingDeque();
-    taskHijackingUsingBlockingDeque.run();
+    taskHijackingUsingBlockingDeque.run();*/
+
+    FillBuffersWithSingleThread fillBuffersWithSingleThread
+            = new FillBuffersWithSingleThread();
+    fillBuffersWithSingleThread.run();
   }//main
 }//main class

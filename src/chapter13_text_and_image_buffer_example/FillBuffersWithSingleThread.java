@@ -24,17 +24,34 @@ public class FillBuffersWithSingleThread {
         BlockingQueue<String> stringBuffer = new LinkedBlockingQueue<>();
         BlockingQueue<ImageData> imageDateBuffer = new LinkedBlockingQueue<>();
 
+        long start = System.currentTimeMillis();
+        for(String s : textArr){
+            stringBuffer.offer(s);
+        }
+
+        for(int i=1; i<=30; i++){
+            imageDateBuffer.offer(new ImageData().downLoadImageData());
+        }
+        long end = System.currentTimeMillis();
+
+        System.out.println("단일 스레드 실행 시간 밀리초 : " + (end-start));
     }//run()
 
     private static final class ImageData {
+        private byte[] data = null;
         private ImageData(){}
         public ImageData downLoadImageData(){
             int waitTime = ThreadLocalRandom.current().nextInt(10, 1001);
-
-            if (waitTime > 500) return null;
             try {
-                Thread.sleep(waitTime);
-                return new ImageData();
+                if (waitTime > 500) {
+                    Thread.sleep(500);
+                    System.out.println("이미지 다운로드 실패!!");
+                    return new ImageData();
+                } else {
+                    Thread.sleep(waitTime);
+                    data = new byte[]{'i', 'm', 'a', 'g', 'e', 'd', 'a', 't', 'a'};
+                    return new ImageData();
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
