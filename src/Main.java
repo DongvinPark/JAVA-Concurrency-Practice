@@ -1,7 +1,6 @@
 package src;
 
-import src.chapter11_producer_consumer_example.ProducersAndConsumersWithoutBlockingQueue;
-import src.chapter12_task_hijacking_example.TaskHijackingUsingBlockingDeque;
+import src.chapter13_text_and_image_buffer_example.FillBuffersWithCompletionService;
 import src.chapter13_text_and_image_buffer_example.FillBuffersWithSingleThread;
 
 public class Main {
@@ -82,5 +81,9 @@ public class Main {
     FillBuffersWithSingleThread fillBuffersWithSingleThread
             = new FillBuffersWithSingleThread();
     fillBuffersWithSingleThread.run();
+
+    FillBuffersWithCompletionService fillBuffersWithCompletionService
+            = new FillBuffersWithCompletionService();
+    fillBuffersWithCompletionService.run();
   }//main
 }//main class

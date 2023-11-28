@@ -1,8 +1,8 @@
 package src.chapter13_text_and_image_buffer_example;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 /*
 HTML 페이지를 표시할 때 사용할 텍스트 30 개와 이미지 30개를 각각의 버퍼에 채워 넣는 프로그램.
@@ -25,17 +25,65 @@ public class FillBuffersWithCompletionService {
         BlockingQueue<String> stringBuffer = new LinkedBlockingQueue<>();
         BlockingQueue<ImageData> imageDateBuffer = new LinkedBlockingQueue<>();
 
+        ExecutorService executor = Executors.newFixedThreadPool(30);
+
+        CompletionService<ImageData> completionService = new ExecutorCompletionService<>(executor);
+
+        List<ImageData> imageDataList = new ArrayList<>();
+        for(int i=1; i<=30; i++){
+            imageDataList.add(new ImageData());
+        }
+
+        for(ImageData imageData : imageDataList){
+            /*
+            아래의 코드는 다음의 메서드 레퍼런스를 이용해서  completionService.submit(imageData::downLoadImageData);
+             라는 1 줄의 코드로 줄일 수 있지만,
+            Callable을 사용하고 있다는 것을 분명히 표시하기 위해서 일부러 오버라이드가 남아 있는 코드를 사용하였다.
+            */
+            completionService.submit(
+                    new Callable<>() {
+                        @Override
+                        public ImageData call() throws Exception {
+                            return imageData.downLoadImageData();
+                        }
+                    }
+            );
+        }
+
+        try {
+            long start = System.currentTimeMillis();
+            for(String s : textArr){
+                stringBuffer.offer(s);
+            }
+
+            for(int i=1; i<=30; i++){
+                imageDateBuffer.offer(completionService.take().get());
+            }
+            long end = System.currentTimeMillis();
+            System.out.println("CompletionService 실행시간 밀리초 : " + (end-start));
+        } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException(e);
+        } finally {
+            executor.shutdown();
+        }
+
     }//run()
 
     private static final class ImageData {
+        private byte[] data = null;
         private ImageData(){}
         public ImageData downLoadImageData(){
             int waitTime = ThreadLocalRandom.current().nextInt(10, 1001);
-
-            if (waitTime > 500) return null;
             try {
-                Thread.sleep(waitTime);
-                return new ImageData();
+                if (waitTime > 500) {
+                    Thread.sleep(500);
+                    System.out.println("이미지 다운로드 실패!!");
+                    return new ImageData();
+                } else {
+                    Thread.sleep(waitTime);
+                    data = new byte[]{'i', 'm', 'a', 'g', 'e', 'd', 'a', 't', 'a'};
+                    return new ImageData();
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
