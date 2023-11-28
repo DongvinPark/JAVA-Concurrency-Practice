@@ -1,7 +1,5 @@
 package src.chapter13_text_and_image_buffer_example;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 /*
@@ -12,6 +10,10 @@ HTML 페이지를 표시할 때 사용할 텍스트 30 개와 이미지 30개를
 500 밀리초 보다 오래 결릴 경우 이미지 다운로드를 중단해야 한다.
 
 이미지를 다운로드 받는 것에 걸리는 시간은 10~1000 밀리초 중 랜덤하게 선택된다.
+
+30개의 스레드가 이미지를 개별로 다운로드 받고, 이미지 다운로드 시간을 500밀리초 이상을 기다리지 않기 때문에
+400 ~ 500밀리초 정도가 측정되었다.
+싱글 스레드로 처리한 경우(== 약 10,000 밀리초)보다 약 20배 정도 빨랐다.
 */
 public class FillBuffersWithCompletionService {
     public void run(){
@@ -23,35 +25,33 @@ public class FillBuffersWithCompletionService {
         };
 
         BlockingQueue<String> stringBuffer = new LinkedBlockingQueue<>();
-        BlockingQueue<ImageData> imageDateBuffer = new LinkedBlockingQueue<>();
+        BlockingQueue<byte[]> imageDateBuffer = new LinkedBlockingQueue<>();
 
         ExecutorService executor = Executors.newFixedThreadPool(30);
 
-        CompletionService<ImageData> completionService = new ExecutorCompletionService<>(executor);
+        CompletionService<byte[]> completionService = new ExecutorCompletionService<>(executor);
 
-        List<ImageData> imageDataList = new ArrayList<>();
-        for(int i=1; i<=30; i++){
-            imageDataList.add(new ImageData());
-        }
+        long start = 0L;
+        long end = 0L;
 
-        for(ImageData imageData : imageDataList){
+        try {
+            start = System.currentTimeMillis();
+            for(int i=1; i<=30; i++){
             /*
-            아래의 코드는 다음의 메서드 레퍼런스를 이용해서  completionService.submit(imageData::downLoadImageData);
+            아래의 코드는 다음의 람다를 이용해서 completionService.submit(() -> new ImageData().downLoadData());
              라는 1 줄의 코드로 줄일 수 있지만,
             Callable을 사용하고 있다는 것을 분명히 표시하기 위해서 일부러 오버라이드가 남아 있는 코드를 사용하였다.
             */
-            completionService.submit(
-                    new Callable<>() {
-                        @Override
-                        public ImageData call() throws Exception {
-                            return imageData.downLoadImageData();
+                completionService.submit(
+                        new Callable<>() {
+                            @Override
+                            public byte[] call() {
+                                return new ImageData().downLoadData();
+                            }
                         }
-                    }
-            );
-        }
+                );
+            }
 
-        try {
-            long start = System.currentTimeMillis();
             for(String s : textArr){
                 stringBuffer.offer(s);
             }
@@ -59,34 +59,37 @@ public class FillBuffersWithCompletionService {
             for(int i=1; i<=30; i++){
                 imageDateBuffer.offer(completionService.take().get());
             }
-            long end = System.currentTimeMillis();
-            System.out.println("CompletionService 실행시간 밀리초 : " + (end-start));
+            end = System.currentTimeMillis();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         } finally {
+            System.out.println("CompletionService 실행 시간 밀리초 : " + (end-start));
             executor.shutdown();
         }
 
     }//run()
 
     private static final class ImageData {
-        private byte[] data = null;
-        private ImageData(){}
-        public ImageData downLoadImageData(){
-            int waitTime = ThreadLocalRandom.current().nextInt(10, 1001);
+        private byte[] data;
+        public ImageData(){
+            data = new byte[]{'i', 'm', 'a', 'g', 'e', 'd', 'a', 't', 'a'};
+        }
+
+        public byte[] downLoadData() {
+            //System.out.println("다운로드데이터 호출!!");
+            int threadSleepTime = ThreadLocalRandom.current().nextInt(10,1001);
+            if(threadSleepTime > 500) {
+                System.out.println("이미지 다운로드 실패!!");
+                threadSleepTime = 500;
+                data = new byte[]{};
+                return data;
+            }
             try {
-                if (waitTime > 500) {
-                    Thread.sleep(500);
-                    System.out.println("이미지 다운로드 실패!!");
-                    return new ImageData();
-                } else {
-                    Thread.sleep(waitTime);
-                    data = new byte[]{'i', 'm', 'a', 'g', 'e', 'd', 'a', 't', 'a'};
-                    return new ImageData();
-                }
+                Thread.sleep(threadSleepTime);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            return data;
         }
     }
 
