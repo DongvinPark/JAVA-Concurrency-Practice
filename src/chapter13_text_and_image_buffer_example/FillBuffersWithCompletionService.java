@@ -72,7 +72,7 @@ public class FillBuffersWithCompletionService {
     private static final class ImageData {
         private byte[] data;
         public ImageData(){
-            data = new byte[]{'i', 'm', 'a', 'g', 'e', 'd', 'a', 't', 'a'};
+            data = new byte[]{};
         }
 
         public byte[] downLoadData() {
@@ -82,7 +82,8 @@ public class FillBuffersWithCompletionService {
                 if(threadSleepTime > 500) {
                     System.out.println("이미지 다운로드 실패!!");
                     threadSleepTime = 500;
-                    data = new byte[]{};
+                } else {
+                    data = new byte[]{'i', 'm', 'a', 'g', 'e', 'd', 'a', 't', 'a'};
                 }
                 Thread.sleep(threadSleepTime);
             } catch (InterruptedException e) {
