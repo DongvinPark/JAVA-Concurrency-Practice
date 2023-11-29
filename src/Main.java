@@ -1,8 +1,8 @@
 package src;
 
-import src.chapter13_text_and_image_buffer_example.FillBuffersWithCompletionService;
-import src.chapter13_text_and_image_buffer_example.FillBuffersWithFuture;
-import src.chapter13_text_and_image_buffer_example.FillBuffersWithSingleThread;
+import src.chapter13_text_and_image_buffer_example.FillBuffersVersion02WithCompletionService;
+import src.chapter13_text_and_image_buffer_example.FillBuffersVersion03WithFuture;
+import src.chapter13_text_and_image_buffer_example.FillBuffersVersion01WithSingleThread;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -79,16 +79,16 @@ public class Main {
             = new TaskHijackingUsingBlockingDeque();
     taskHijackingUsingBlockingDeque.run();*/
 
-    /*FillBuffersWithSingleThread fillBuffersWithSingleThread
-            = new FillBuffersWithSingleThread();
-    fillBuffersWithSingleThread.run();
+    FillBuffersVersion01WithSingleThread fillBuffersVersion01WithSingleThread
+            = new FillBuffersVersion01WithSingleThread();
+    fillBuffersVersion01WithSingleThread.run();
 
-    FillBuffersWithCompletionService fillBuffersWithCompletionService
-            = new FillBuffersWithCompletionService();
-    fillBuffersWithCompletionService.run();*/
+    FillBuffersVersion02WithCompletionService fillBuffersVersion02WithCompletionService
+            = new FillBuffersVersion02WithCompletionService();
+    fillBuffersVersion02WithCompletionService.run();
 
-    FillBuffersWithFuture fillBuffersWithFuture
-        = new FillBuffersWithFuture();
-    fillBuffersWithFuture.run();
+    FillBuffersVersion03WithFuture fillBuffersVersion03WithFuture
+        = new FillBuffersVersion03WithFuture();
+    fillBuffersVersion03WithFuture.run();
   }//main
 }//main class

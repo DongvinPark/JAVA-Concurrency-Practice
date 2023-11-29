@@ -16,7 +16,7 @@ HTML 페이지를 표시할 때 사용할 텍스트 30 개와 이미지 30개를
 실행 결과, 모든 이미지 다운로드 작업이 전부 이후의 작업을 블록킹 해버리기 때문에 실행시간이
 약 10초나 걸렸다.
 */
-public class FillBuffersWithSingleThread {
+public class FillBuffersVersion01WithSingleThread {
     public void run(){
         String[] textArr = {
                 "text", "text", "text", "text", "text", "text", "text", "text", "text", "text",
@@ -48,7 +48,7 @@ public class FillBuffersWithSingleThread {
             try {
                 if (waitTime > 500) {
                     Thread.sleep(500);
-                    System.out.println("이미지 다운로드 실패!!");
+                    //System.out.println("이미지 다운로드 실패!!");
                     return new ImageData();
                 } else {
                     Thread.sleep(waitTime);
