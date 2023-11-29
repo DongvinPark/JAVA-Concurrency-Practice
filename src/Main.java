@@ -1,8 +1,6 @@
 package src;
 
-import src.chapter13_text_and_image_buffer_example.FillBuffersVersion02WithCompletionService;
-import src.chapter13_text_and_image_buffer_example.FillBuffersVersion03WithFuture;
-import src.chapter13_text_and_image_buffer_example.FillBuffersVersion01WithSingleThread;
+import src.chapter13_text_and_image_buffer_example.FillBuffersVersion04WithExecutorService;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -79,7 +77,7 @@ public class Main {
             = new TaskHijackingUsingBlockingDeque();
     taskHijackingUsingBlockingDeque.run();*/
 
-    FillBuffersVersion01WithSingleThread fillBuffersVersion01WithSingleThread
+    /*FillBuffersVersion01WithSingleThread fillBuffersVersion01WithSingleThread
             = new FillBuffersVersion01WithSingleThread();
     fillBuffersVersion01WithSingleThread.run();
 
@@ -89,6 +87,10 @@ public class Main {
 
     FillBuffersVersion03WithFuture fillBuffersVersion03WithFuture
         = new FillBuffersVersion03WithFuture();
-    fillBuffersVersion03WithFuture.run();
+    fillBuffersVersion03WithFuture.run();*/
+
+    FillBuffersVersion04WithExecutorService fillBuffersVersion04WithExecutorService
+            = new FillBuffersVersion04WithExecutorService();
+    fillBuffersVersion04WithExecutorService.run();
   }//main
 }//main class
