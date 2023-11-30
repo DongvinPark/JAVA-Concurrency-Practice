@@ -1,6 +1,6 @@
 package src;
 
-import src.chapter15_interrupt_and_cancel_example.FailedToCancelBigIntegerProducer;
+import src.chapter14_interrupt_and_cancel_example.FailedToCancelBigIntegerProducer;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {

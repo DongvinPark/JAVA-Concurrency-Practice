@@ -1,4 +1,4 @@
-package src.chapter15_interrupt_and_cancel_example;
+package src.chapter14_interrupt_and_cancel_example;
 
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
