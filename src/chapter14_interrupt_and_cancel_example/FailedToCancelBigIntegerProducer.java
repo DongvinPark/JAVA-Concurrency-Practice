@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /*
-BigInteger를 용량 10자리 블록킹큐에다가 집어넣다가, 메인스레드에서 10 밀리초 후에 착업을 취소시키는 예제다.
+BigInteger를 용량 10짜리 블록킹큐에다가 집어넣다가, 메인스레드에서 10 밀리초 후에 착업을 취소시키는 예제다.
 
 BlockingQueue 인터페이스에는 큐에 요소를 집어넣는 것에 사용할 수 있는 3가지 메서드가 있다. put, add, offer다.
 
