@@ -1,6 +1,6 @@
 package src;
 
-import src.chapter14_interrupt_and_cancel_example.FailedToCancelBigIntegerProducer;
+import src.chapter14_interrupt_and_cancel_example.CancelBigIntegerProducerByInterrupt;
 
 public class Main {
   public static void main(String[] args) throws InterruptedException {
@@ -93,8 +93,12 @@ public class Main {
             = new FillBuffersVersion04WithExecutorService();
     fillBuffersVersion04WithExecutorService.run();*/
 
-    FailedToCancelBigIntegerProducer failedToCancelBigIntegerProducer
+    /*FailedToCancelBigIntegerProducer failedToCancelBigIntegerProducer
             = new FailedToCancelBigIntegerProducer();
-    failedToCancelBigIntegerProducer.run();
+    failedToCancelBigIntegerProducer.run();*/
+
+    CancelBigIntegerProducerByInterrupt cancelBigIntegerProducerByInterrupt
+            = new CancelBigIntegerProducerByInterrupt();
+    cancelBigIntegerProducerByInterrupt.run();
   }//main
 }//main class

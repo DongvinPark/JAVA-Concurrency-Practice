@@ -50,7 +50,8 @@ public class FailedToCancelBigIntegerProducer {
             try {
                 BigInteger p = BigInteger.ONE;
                 while(!cancelled){
-                    System.out.println("큐 insert 성공 ? : " + queue.offer( getNextNumber(p) ));
+                    p = getNextNumber(p);
+                    System.out.println("큐 insert 성공 ? : " + queue.offer( p ));
                     /*queue.put( getNextNumber(p) );
                     System.out.println("큐 insert 성공");*/
                 }
