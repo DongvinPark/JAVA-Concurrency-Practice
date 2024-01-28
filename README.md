@@ -10,7 +10,7 @@
 
 <br>
 
-- chapter 5~7은 CountDownLatch와 Futere 객체를 활용하는 예시로 구성돼 있습니다.
+- chapter 5~7은 CountDownLatch와 Futere & CompletableFuture 객체를 활용하는 예시로 구성돼 있습니다.
 
 <br>
 
