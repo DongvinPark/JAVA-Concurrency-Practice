@@ -2,8 +2,7 @@ package src.chapter10_callable_example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.*;
 
 public class ReturnOrThrowThatIsTheProblem {
   public void run(){
@@ -22,22 +21,19 @@ public class ReturnOrThrowThatIsTheProblem {
 
     List<Integer> threadWorkResultList = new ArrayList<>();
 
-    for (int i=1; i<=10; i++){
-      CallableImpl callable = new CallableImpl();
+    ExecutorService executor = Executors.newFixedThreadPool(10);
 
-      Integer result;
+    List<Future<Integer>> futures = new ArrayList<>();
+
+    for (int i = 0; i < 10; i++) {
+      futures.add(executor.submit(new CallableImpl()));
+    }
+
+    for (Future<Integer> future : futures) {
       try {
-        result = callable.call();
-        threadWorkResultList.add(result);
-      } catch (Exception e) {
-        threadWorkResultList.add(null);
-      }
-    }//for
-
-    for (Integer result : threadWorkResultList) {
-      if (result != null) {
+        Integer result = future.get();
         System.out.println("success : " + result);
-      } else {
+      } catch (Exception e) {
         System.out.println("\texception!!");
       }
     }
