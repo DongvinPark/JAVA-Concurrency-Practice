@@ -19,8 +19,6 @@ public class ReturnOrThrowThatIsTheProblem {
     상황에 따라서 예외를 던지는 것도 가능하다.
     * */
 
-    List<Integer> threadWorkResultList = new ArrayList<>();
-
     ExecutorService executor = Executors.newFixedThreadPool(10);
 
     List<Future<Integer>> futures = new ArrayList<>();
@@ -37,6 +35,8 @@ public class ReturnOrThrowThatIsTheProblem {
         System.out.println("\texception!!");
       }
     }
+
+    executor.shutdown();
   }//run()
 
   private static final class CallableImpl implements Callable<Integer> {
